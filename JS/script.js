@@ -1,37 +1,61 @@
-const startButton = document.getElementById("start-btn")
-const questionElement = document.getElementById("question")
-const answerButtonsElement = document.getElementById("answer-buttons")
-const showQuestion1 = document.getElementById("question", "answer-buttons1")
-const showQuestion2 = document.getElementById("question", "answer-buttons2")
-const showQuestion3 = document.getElementById("question", "answer-buttons3")
-const showQuestion4 = document.getElementById("question", "answer-buttons4")
+// const startButton = document.getElementById("start-btn")
+// const questionElement = document.getElementById("question")
+// const answerButtonsElement = document.getElementById("answer-buttons")
+// var showQuestion1 = document.getElementById("question", "answer-buttons1")
+// var showQuestion2 = document.getElementById("question", "answer-buttons2")
+// var showQuestion3 = document.getElementById("question", "answer-buttons3")
+// var showQuestion4 = document.getElementById("question", "answer-buttons4")
 
 
-function startQuiz() {
-    console.log("stardsa")
-    getNewQuestion();
-    countdown();
-
+let question = {
+    title: "gato",
+    alt: ["dog", "cat", "bird", "elephant"],
+    correctAnswer: 1
 }
 
-startQuiz();
+function showQuestion(q) {
+    var titleDiv = document.getElementById("title");
+    titleDiv.textContent = q.title;
 
-function getNewQuestion() {
-    array.forEach(question => {
-        showQuestion();
+    var alts = document.querySelectorAll(".alt");
+
+    alts.forEach(function(element, index) {
+        element.textContent = q.alt[index];
+
+        element.addEventListener("click", function() {
+
+            if (q.correctAnswer == index) {
+                console.log("correct");
+            } else {
+                console.log("wrong answer")
+                    // minus points and go to next question (2)
+            }
+        })
     });
+};
+
+showQuestion(question);
 
 
-}
 
-function showQuestion() {
-    question.classList.remove("hide");
-}
 
-function answerSelect() {
 
-}
+// function startQuiz() {
+//     countdown();
+//     console.log("stardsa")
+//         // getNewQuestion();
 
+
+// }
+
+// startQuiz();
+
+// function getNewQuestion() {
+//     if (document.getElementById("correct").clicked == true) {
+//         // element.classList.add("hide");
+//         console.log();
+//     }
+// }
 
 
 
@@ -96,24 +120,24 @@ function answerSelect() {
 // var userScore = 60;
 
 
-var timerEl = document.getElementById("countdown")
+// var timerEl = document.getElementById("countdown")
 
-function countdown() {
-    var timeLeft = 60;
+// function countdown() {
+//     var timeLeft = 60;
 
-    var timeInterval = setInterval(function() {
-            if (timeLeft > 1) {
-                timerEl.textContent = timeLeft + " seconds remaining";
-                timeLeft--;
-            } else if (timeLeft === 1) {
-                timerEl.textContent = timeLeft + " second remaining";
-                timeLeft--;
-            } else {
-                timerEl.textContent = " ";
-                clearInterval(timeInterval);
+//     var timeInterval = setInterval(function() {
+//             if (timeLeft > 1) {
+//                 timerEl.textContent = timeLeft + " seconds remaining";
+//                 timeLeft--;
+//             } else if (timeLeft === 1) {
+//                 timerEl.textContent = timeLeft + " second remaining";
+//                 timeLeft--;
+//             } else {
+//                 timerEl.textContent = " ";
+//                 clearInterval(timeInterval);
 
-                endQuiz();
-            }
-        },
-        1000);
-}
+//                 endQuiz();
+//             }
+//         },
+//         1000);
+// }
