@@ -1,14 +1,3 @@
-// const startButton = document.getElementById("start-btn")
-// const questionElement = document.getElementById("question")
-// const answerButtonsElement = document.getElementById("answer-buttons")
-// var showQuestion1 = document.getElementById("question", "answer-buttons1")
-// var showQuestion2 = document.getElementById("question", "answer-buttons2")
-// var showQuestion3 = document.getElementById("question", "answer-buttons3")
-// var showQuestion4 = document.getElementById("question", "answer-buttons4")
-
-
-
-// -- 
 let question1 = {
     question: "question 1",
     alt: ["ans1", "ans1", "ans1", "ans1"],
@@ -32,7 +21,6 @@ function showQuestion(q) {
 
             } else {
                 console.log("wrong answedr")
-                timeLeft.subtract(10, "s")
                 showQuestion2(question2);
                 // timeLeft = (timeLeft.now() - 10000);
                 // minus points and go to next question (2) 
@@ -136,19 +124,12 @@ function showQuestion4(q) {
 };
 
 
-
-
 function endGame() {
     location.href = "./highscores.html";
 }
 
 
-
-
-
 showQuestion(question1);
-
-
 
 
 
