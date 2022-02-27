@@ -1,146 +1,184 @@
+const section = document.getElementById("sectionContainer")
+var timeLeft = 60;
+
+var setScore = document.getElementById("userhs");
+
 let question1 = {
-    question: "question 1",
-    alt: ["ans1", "ans1", "ans1", "ans1"],
-    correctAnswer1: 1
+    question: "How do you create a function in Javascript?",
+    alt: ["$(function)", "Function()", "function()", "var function();"],
+    correctAnswer1: 2
+}
+
+function generateContainer() {
+    const dropUl = document.getElementById("containerid")
+    console.log(dropUl)
+    dropUl.remove()
+    const elementUl = document.createElement("ul")
+    elementUl.className = "container"
+    elementUl.id = "containerid"
+    section.appendChild(elementUl)
+    return elementUl
 }
 
 function showQuestion(q) {
+    countdown();
     var qDiv = document.getElementById("questions");
     qDiv.textContent = q.question;
 
-    var alts = document.querySelectorAll(".alt");
+    // var alts = document.querySelectorAll(".alt");
+    const elementUl = generateContainer()
+    q.alt.forEach(function(element, index) {
+        const elementLi = document.createElement("li")
+        elementLi.setAttribute("class", "alt btn")
 
-    alts.forEach(function(element, index) {
-        element.textContent = q.alt[index];
+        elementLi.textContent = element;
 
-        element.addEventListener("click", function() {
+        elementLi.addEventListener("click", function() {
+            console.log("hello")
 
             if (q.correctAnswer1 == index) {
-                console.log("correct");
                 showQuestion2(question2);
 
             } else {
-                console.log("wrong answedr")
+                timeLeft = timeLeft - 10
                 showQuestion2(question2);
-                // timeLeft = (timeLeft.now() - 10000);
-                // minus points and go to next question (2) 
             }
         })
+        elementUl.appendChild(elementLi);
     });
-    return;
 };
 
 let question2 = {
-    question: "question 2",
-    alt: ["ans2", "ans2", "ans2", "ans2"],
-    correctAnswer2: 1
+    question: "What is the sign for an array?",
+    alt: ["{}", "()", "[]", "({})"],
+    correctAnswer2: 2
 }
 
 function showQuestion2(q) {
     var qDiv = document.getElementById("questions");
     qDiv.textContent = q.question;
 
-    var alts = document.querySelectorAll(".alt");
+    const elementUl = generateContainer()
 
-    alts.forEach(function(element, index) {
-        element.textContent = q.alt[index];
+    q.alt.forEach(function(element, index) {
+        const elementLi = document.createElement("li")
+        elementLi.setAttribute("class", "alt btn")
 
-        element.addEventListener("click", function() {
+        elementLi.textContent = element;
+
+        elementLi.addEventListener("click", function() {
+            console.log("hello 2")
+
 
             if (q.correctAnswer2 == index) {
-                console.log("correct");
                 showQuestion3(question3);
             } else {
-                console.log("wrong answedr")
+                timeLeft = timeLeft - 10
                 showQuestion3(question3);
                 // timeLeft = (timeLeft.now() - 10000);
                 // minus points and go to next question (2) 
             }
         })
+        elementUl.appendChild(elementLi);
     });
-    return;
 };
 
 
 let question3 = {
-    question: "question 3",
-    alt: ["ans3", "ans3", "ans3", "ans3"],
-    correctAnswer3: 1
+    question: "How do you create a button in html?",
+    alt: ["btn", "sumbit", "bttn", "button"],
+    correctAnswer3: 3
 }
 
 function showQuestion3(q) {
+
     var qDiv = document.getElementById("questions");
     qDiv.textContent = q.question;
 
-    var alts = document.querySelectorAll(".alt");
+    const elementUl = generateContainer()
 
-    alts.forEach(function(element, index) {
-        element.textContent = q.alt[index];
+    q.alt.forEach(function(element, index) {
+        const elementLi = document.createElement("li")
+        elementLi.setAttribute("class", "alt btn")
 
-        element.addEventListener("click", function() {
+        elementLi.textContent = element;
+
+        elementLi.addEventListener("click", function(e) {
+            console.log(e.target)
+            console.log("hello there")
 
             if (q.correctAnswer3 == index) {
-                console.log("correct");
                 showQuestion4(question4);
             } else {
-                console.log("wrong answedr")
+
+                timeLeft = timeLeft - 10
                 showQuestion4(question4);
-                // timeLeft = (timeLeft.now() - 10000);
-                // minus points and go to next question (2) 
             }
         })
+        elementUl.appendChild(elementLi);
     });
-    return;
 };
 
 
 let question4 = {
-    question: "question 4",
-    alt: ["ans4", "ans4", "ans4", "ans4"],
+    question: "q4",
+    alt: ["ans", "ans4", "ans", "ans"],
     correctAnswer4: 1
 }
 
 function showQuestion4(q) {
+
     var qDiv = document.getElementById("questions");
     qDiv.textContent = q.question;
 
-    var alts = document.querySelectorAll(".alt");
+    const elementUl = generateContainer()
 
-    alts.forEach(function(element, index) {
-        element.textContent = q.alt[index];
+    q.alt.forEach(function(element, index) {
+        const elementLi = document.createElement("li")
+        elementLi.setAttribute("class", "alt btn")
 
-        element.addEventListener("click", function() {
+        elementLi.textContent = element;
+
+        elementLi.addEventListener("click", function(e) {
 
             if (q.correctAnswer4 == index) {
-                console.log("correct");
+                setScore = timeLeft
+                localStorage.setItem("userscore", setScore)
                 endGame();
             } else {
-                console.log("wrong answedr")
+
+                timeLeft = timeLeft - 10
+                setScore = timeLeft
+                localStorage.setItem("userscore", setScore)
                 endGame();
             }
         })
+        elementUl.appendChild(elementLi);
     });
-    return;
 };
 
 
 function endGame() {
+    // userHs.textContent = setScore
     location.href = "./highscores.html";
+    console.log(setScore)
+
+
+    // console.log(timeLeft)
 }
 
+// window.addEventListener("load", () => {
+const dropUl = document.getElementById("containerid")
+if (dropUl) {
+    showQuestion(question1);
+}
 
-showQuestion(question1);
-
-
-
-countdown();
+// });
 
 
 var timerEl = document.getElementById("countdown")
 
 function countdown() {
-    var timeLeft = 60;
-
     var timeInterval = setInterval(function() {
             if (timeLeft > 1) {
                 timerEl.textContent = timeLeft + " seconds remaining";
