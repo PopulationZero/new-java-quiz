@@ -121,9 +121,9 @@ function showQuestion3(q) {
 
 
 let question4 = {
-    question: "q4",
-    alt: ["ans", "ans4", "ans", "ans"],
-    correctAnswer4: 1
+    question: "How do you show 'something' in a console?",
+    alt: ["print", "log()", "console.log()", "Trick question, you cant!"],
+    correctAnswer4: 2
 }
 
 function showQuestion4(q) {
